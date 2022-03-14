@@ -25,10 +25,14 @@ void recursive(int x, int y, int z)
     }
 }
 
-void n_for_loop(int x, int size, int arr[])
+void n_for_loop(int start = 0)
 {
+    static int arr[] = {1, 2, 3};
+
+    static int size = sizeof(arr)/sizeof(*arr);
     static int* arrTemp(new int[size]);
-    if (x >= size)
+
+    if (start >= size)
     {
         for (int i = 0; i < size; i++)
         {
@@ -37,18 +41,17 @@ void n_for_loop(int x, int size, int arr[])
         cout << endl;
         return;
     }
-    for (int i = 0; i < arr[x]; i++)
+    for (int i = 0; i < arr[start]; i++)
     {
-        arrTemp[x] = i;
-        n_for_loop(x + 1, size, arr);
+        arrTemp[start] = i;
+        n_for_loop(start + 1);
     }
 }
 
 int main()
 {
-    int arr[] = {3, 3, 3};
+    n_for_loop();
 
-    n_for_loop(0, 3, arr);
     // recursive(3, 3, 3);
     return 0;
 }
